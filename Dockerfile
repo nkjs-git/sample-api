@@ -16,12 +16,12 @@ COPY package.json /workspace/package.json
 
 RUN npm install --production
 
-WORKDIR /home/node
+# WORKDIR /home/node
 
-COPY --from=builder /workspace/src /home/node/src
-COPY --from=builder /workspace/node_modules /home/node/node_modules
-COPY --from=builder /workspace/package.json /home/node/package.json
-COPY --from=builder /workspace/package-lock.json /home/node/package-lock.json
+# COPY --from=builder /workspace/src /home/node/src
+# COPY --from=builder /workspace/node_modules /home/node/node_modules
+# COPY --from=builder /workspace/package.json /home/node/package.json
+# COPY --from=builder /workspace/package-lock.json /home/node/package-lock.json
 
 # Application port
 EXPOSE 8080
