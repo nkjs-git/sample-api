@@ -1,38 +1,36 @@
 pipeline {
-    agent any
-    options {
-        skipStagesAfterUnstable()
+  environment {
+    registry = "naveen19/sample-js"
+    registryCredential = "dockerhub"
+    dockerImage = ''
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/nkjs-git/sample-api.git'
+      }
     }
-    stages {
-         stage('Clone repository') { 
-            steps { 
-                script{
-                checkout scm
-                }
-            }
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
-
-        stage('Build') { 
-            steps { 
-                script{
-                 app = docker.build("naveen19/sample-js:1.0.0")
-                }
-            }
-        }
-        stage('Test'){
-            steps {
-                 echo 'Empty'
-            }
-        }
-//         stage('Deploy') {
-//             steps {
-//                 script{
-//                         docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {
-//                     app.push("${env.BUILD_NUMBER}")
-//                     app.push("latest")
-//                     }
-//                 }
-//             }
-//         }
+      }
     }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
+  }
 }
