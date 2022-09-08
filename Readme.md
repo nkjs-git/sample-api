@@ -7,6 +7,7 @@
 **References:**
 
 - https://www.edureka.co/community/55640/jenkins-docker-docker-image-jenkins-pipeline-docker-registry
+- https://stackoverflow.com/questions/41215997/jenkins-docker-pipeline-error
 
 
 **Steps:**
