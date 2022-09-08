@@ -41,7 +41,7 @@ USER jenkins
 
 3. Create a jenkins container from above created image using below command
 
-    **docker run --name jenkins-docker -p 8082:8080 -v /var/run/docker.sock:/var/run/docker.sock jenkins-docker:latest**
+    **docker run -d --name jenkins-docker -p 8082:8080 -v /var/run/docker.sock:/var/run/docker.sock jenkins-docker:latest**
 
     **Note:** Get the jenkins secrete from container using below command
 
