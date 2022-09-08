@@ -27,6 +27,22 @@ pipeline {
         }
       }
     }
+    stage('Remove previous container') {
+      steps{
+        script {
+            sh "docker rm test-nodejs -f"
+          }
+        }
+    }
+    stage('Deploy Container') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.withRun('-p 8080:8080')
+          }
+        }
+      }
+    }
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:$BUILD_NUMBER"
