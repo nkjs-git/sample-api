@@ -1,9 +1,10 @@
 
-**Pre-Requisites **
+**Pre-Requisites**
 - Docker installed on VM (Working on Ubuntu VM)
 - Docker hub account with repository 
+- Node.js project in github
 
-**References: **
+**References:**
 
 - https://www.edureka.co/community/55640/jenkins-docker-docker-image-jenkins-pipeline-docker-registry
 
@@ -51,6 +52,28 @@ USER jenkins
 
 6. Create a dockerhub credentials in jenkins global credentials (admin->credentials->global credentials -> add credentials). Check reference 1 (edureka) for adding credentials
 
-7. 
+
+7. Create new pipeline item in jenkins by selecting 'pipeline' as item type and select the pipeline script from SCM and select Jenkinsfile from this repo 
+
+8. Review and click build now.
+
+**Note:** 
+
+**Error 1:** 
+
+```
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/build?buildargs=%7B%7D&cachefrom=%5B%5D&cgroupparent=&cpuperiod=0&cpuquota=0&cpusetcpus=&cpusetmems=&cpushares=0&dockerfile=Dockerfile&labels=%7B%7D&memory=0&memswap=0&networkmode=default&rm=1&shmsize=0&t=gustavoapolinario%2Fdocker-test%3A3&target=&ulimits=null&version=1": dial unix /var/run/docker.sock: connect:
+```
+Solution: If the above error is seen run the command to provide permission to jenkins user for volume file system
+- docker exec -u root -it jenkins-docker1 /bin/bash
+- chown jenkins /var/run/docker.sock
+
+
+
+**Error 2:**
+
+```groovy.lang.MissingPropertyException: No such property: docker for class: groovy.lang.Binding```
+
+- Solution: Download plugin Docker Pipeline in jenkins and restart the container
 
 
