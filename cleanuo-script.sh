@@ -5,7 +5,7 @@ then
   echo "No container found"
 else
   echo "Cleaning previous deployments"
-  docker rm test-nodejs -f
+  docker rm sample-service -f
   image=`docker ps | grep "sample-service" | awk -F " " '{print $2}'`
   docker rmi $image
 fi
