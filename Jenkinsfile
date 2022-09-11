@@ -14,11 +14,11 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + ":1.0.$BUILD_NUMBER"
         }
       }
     }
-    stage('Deploy Image') {
+    stage('Push Image') {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
@@ -27,10 +27,10 @@ pipeline {
         }
       }
     }
-    stage('Remove previous container') {
+    stage('Remove previous container and image') {
       steps{
         script {
-            sh "docker rm test-nodejs -f"
+            sh "sh cleanup-script.sh"
           }
         }
     }
@@ -38,14 +38,9 @@ pipeline {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
-            dockerImage.withRun('-p 8080:8080')
+            dockerImage.run('-p 8080:8080 --name sample-service')
           }
         }
-      }
-    }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
   }
