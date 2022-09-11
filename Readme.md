@@ -38,6 +38,8 @@ USER jenkins
 2. Create the docker image for jenkins container by running the below command
 
     **docker build -t jenkins-docker .**
+    
+    **Note:** There is already a jenkins-docker image created and can be pulled directly from **naveen19/sample-js:1.0.0**
 
 3. Create a jenkins container from above created image using below command
 
