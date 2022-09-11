@@ -42,6 +42,8 @@ USER jenkins
 3. Create a jenkins container from above created image using below command
 
     **docker run -d --name jenkins-docker -p 8082:8080 -v /var/run/docker.sock:/var/run/docker.sock jenkins-docker:latest**
+    
+    **It is importent to bind volume to docker socket (docker.sock) for deploying node.js application container on same host on which jenkins container is running**
 
     **Note:** Get the jenkins secrete from container using below command
 
