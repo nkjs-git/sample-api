@@ -55,7 +55,7 @@ USER jenkins
 
 5. Go to manage plugins in jenkins page and install **Docker Pipeline plugin** for running docker command in pipeline stages
 
-6. Create a dockerhub credentials in jenkins global credentials (admin->credentials->global credentials -> add credentials). Check reference 1 (edureka) for adding credentials
+6. Create a dockerhub credentials in jenkins global credentials (admin->credentials->global credentials (for jenkins user) -> add credentials). Check reference 1 (edureka) for adding credentials
 
 
 7. Create new pipeline item in jenkins by selecting 'pipeline' as item type and select the pipeline script from SCM and select Jenkinsfile from this repo 
