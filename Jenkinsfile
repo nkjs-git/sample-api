@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "naveen19/sample-js"
-    registryCredential = "dockerhub"
+    registryCredential = "dockerhub" #just a placeholder
     dockerImage = ''
   }
   agent any
