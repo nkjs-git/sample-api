@@ -39,7 +39,7 @@ USER jenkins
 
     **docker build -t jenkins-docker .**
     
-    **Note:** There is already a jenkins-docker image created and can be pulled directly from **naveen19/sample-js:1.0.0**
+    **Note:** There is already a jenkins-docker image created and can be pulled directly from **naveen19/jenkins-docker:1.0.0**
 
 3. Create a jenkins container from above created image using below command
 
@@ -49,7 +49,7 @@ USER jenkins
 
     **Note:** Get the jenkins secrete from container using below command
 
-    **docker container exec jenkins-docke sh -c "cat /var/jenkins_home/secrets/initialAdminPassword"**
+    **docker container exec jenkins-docker sh -c "cat /var/jenkins_home/secrets/initialAdminPassword"**
     
 4. Lauch the jenkins in browser and complete the jenkins basic setup with suggested plugins installation and user configuration
 
